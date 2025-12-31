@@ -35,7 +35,6 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [charIndex, roleIndex]);
 
-  /* ---------- Page Load ---------- */
   useEffect(() => {
     setTimeout(() => setPageLoaded(true), 100);
   }, []);
@@ -44,15 +43,11 @@ export default function App() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "skills", "projects", "contact"];
-      const scrollY = window.scrollY + 160;
+      const pos = window.scrollY + window.innerHeight / 3;
 
       sections.forEach((sec) => {
         const el = document.getElementById(sec);
-        if (
-          el &&
-          el.offsetTop <= scrollY &&
-          el.offsetTop + el.offsetHeight > scrollY
-        ) {
+        if (el && pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight) {
           setActive(sec);
         }
       });
@@ -66,10 +61,10 @@ export default function App() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          entry.isIntersecting
-            ? entry.target.classList.add("show-section")
-            : entry.target.classList.remove("show-section");
+        entries.forEach((e) => {
+          e.isIntersecting
+            ? e.target.classList.add("show-section")
+            : e.target.classList.remove("show-section");
         });
       },
       { threshold: 0.2 }
@@ -88,19 +83,23 @@ export default function App() {
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
+      {/* NAVBAR */}
       <nav className={`navbar ${pageLoaded ? "show" : ""}`}>
-        <h3 className="brand">Sagar</h3>
+        <h3 className="brand">Sagar Jha</h3>
         <ul>
-          <li className={active === "home" ? "active" : ""} onClick={() => scrollTo("home")}>Home</li>
-          <li className={active === "about" ? "active" : ""} onClick={() => scrollTo("about")}>About</li>
-          <li className={active === "skills" ? "active" : ""} onClick={() => scrollTo("skills")}>Skills</li>
-          <li className={active === "projects" ? "active" : ""} onClick={() => scrollTo("projects")}>Projects</li>
-          <li className={active === "contact" ? "active" : ""} onClick={() => scrollTo("contact")}>Contact</li>
+          {["home", "about", "skills", "projects", "contact"].map((i) => (
+            <li
+              key={i}
+              className={active === i ? "active" : ""}
+              onClick={() => scrollTo(i)}
+            >
+              {i.charAt(0).toUpperCase() + i.slice(1)}
+            </li>
+          ))}
         </ul>
       </nav>
 
-      {/* ================= HERO ================= */}
+      {/* HERO */}
       <section id="home" className={`hero ${pageLoaded ? "show" : ""}`}>
         <div className="left-social">
           <a href="https://www.linkedin.com/in/jhaasagar" target="_blank" rel="noreferrer"><FaLinkedin /></a>
@@ -111,30 +110,16 @@ export default function App() {
         </div>
 
         <div className="hero-text">
-          <h1>
-            Hi, I am <br /> <span>Sagar Jha</span>
-          </h1>
-
+          <h1>Hi, I am <br /><span>Sagar Jha</span></h1>
           <h3 className="typing">{text}</h3>
-
           <p>
             A Computer Science student focused on building modern,
             responsive and user-friendly web applications.
           </p>
 
           <div className="hero-buttons">
-            <button className="cta" onClick={() => scrollTo("contact")}>
-              Contact Me
-            </button>
-
-            <a
-              href="/resume/Sagar_Jha_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="cta resume-btn"
-            >
-              Resume
-            </a>
+            <button className="cta" onClick={() => scrollTo("contact")}>Contact Me</button>
+            <a href="/resume/Sagar_Jha_Resume.pdf" className="cta resume-btn" target="_blank" rel="noreferrer">Resume</a>
           </div>
 
           <div className="scroll" onClick={() => scrollTo("about")}>
@@ -145,22 +130,22 @@ export default function App() {
 
         <div className="hero-img">
           <div className="blob">
-            <img src={profile} alt="Sagar Jha profile" />
+            <img src={profile} alt="Sagar Jha" />
           </div>
         </div>
       </section>
 
-      {/* ================= ABOUT ================= */}
-      <section id="about" className="section animate-section">
+      {/* ABOUT */}
+      <section id="about" className="section animate-section spaced">
         <h2>About Me</h2>
         <p>
-          I enjoy learning new technologies, solving problems, and building
-          real-world projects with clean UI and good user experience.
+          I enjoy learning new technologies and building real-world projects
+          with clean UI and good UX.
         </p>
       </section>
 
-      {/* ================= SKILLS ================= */}
-      <section id="skills" className="section animate-section">
+      {/* SKILLS */}
+      <section id="skills" className="section animate-section spaced">
         <h2>Skills</h2>
         <div className="skills">
           <span>C</span><span>C++</span><span>Java</span><span>Python</span>
@@ -168,57 +153,62 @@ export default function App() {
         </div>
       </section>
 
-      {/* ================= PROJECTS ================= */}
-      <section id="projects" className="section animate-section">
+      {/* PROJECTS — OPTION A */}
+      <section id="projects" className="section animate-section spaced">
         <h2>Projects</h2>
+
         <div className="projects-grid">
-          <div className="project-card">
-            <img src="/projects/travel.png" alt="Travel Website" />
-            <h3>Travel Website</h3>
+          {/* Project 1 */}
+          <div className="project-wrapper">
+            <div className="project-card">
+              <img src="/projects/travel.png" alt="Travel Website" />
+              <h3>Travel Website</h3>
+            </div>
+            <div className="project-desc">
+              <p>
+                A travel website where users can explore destinations and plan trips.
+              </p>
+              <div className="project-links">
+                <a href="#" target="_blank">Demo</a>
+                <a href="#" target="_blank">GitHub</a>
+              </div>
+            </div>
           </div>
-          <div className="project-card">
-            <img src="/projects/weather.jpg" alt="Weather App" />
-            <h3>Weather App</h3>
+
+          {/* Project 2 */}
+          <div className="project-wrapper">
+            <div className="project-card">
+              <img src="/projects/weather.jpg" alt="Weather App" />
+              <h3>Weather App</h3>
+            </div>
+            <div className="project-desc">
+              <p>
+                Real-time weather app using API and modern JavaScript.
+              </p>
+              <div className="project-links">
+                <a href="#" target="_blank">Demo</a>
+                <a href="#" target="_blank">GitHub</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ================= CONTACT (FORM WORKING) ================= */}
-      <section id="contact" className="section animate-section">
-        <h2>Contact Me</h2>
+      {/* CONTACT */}
+      <section id="contact" className="section animate-section spaced">
+        <h2 className="contact-title">Contact Me</h2>
 
         <form
-          className="contact-form"
+          className="contact-form centered"
           action="https://formspree.io/f/mkonddar"
           method="POST"
         >
-          {/* 🔒 Email subject */}
-          <input
-            type="hidden"
-            name="_subject"
-            value="New Portfolio Message 🚀"
-          />
+          <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required
-          />
-
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="5"
-            required
-          ></textarea>
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="tel" name="phone" placeholder="Phone Number" />
+          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
 
           <button type="submit">Send Message</button>
         </form>
