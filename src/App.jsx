@@ -3,7 +3,9 @@ import {
   FaLinkedin,
   FaTelegramPlane,
   FaEnvelope,
-  FaWhatsapp
+  FaWhatsapp,
+  FaBars,
+  FaTimes
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import profile from "./assets/profile.jpg";
@@ -58,29 +60,9 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* ---------- Scroll Animations ---------- */
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          e.isIntersecting
-            ? e.target.classList.add("show-section")
-            : e.target.classList.remove("show-section");
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document.querySelectorAll(".animate-section").forEach((sec) => {
-      observer.observe(sec);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   const scrollTo = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false); // mobile menu close
+    setMenuOpen(false);
   };
 
   return (
@@ -89,11 +71,9 @@ export default function App() {
       <nav className={`navbar ${pageLoaded ? "show" : ""}`}>
         <h3 className="brand">Sagar Jha</h3>
 
-        {/* Hamburger */}
+        {/* ☰ / ✖ */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-          <span></span>
-          <span></span>
-          <span></span>
+          {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
@@ -108,6 +88,14 @@ export default function App() {
           ))}
         </ul>
       </nav>
+
+      {/* 🔥 OVERLAY (NEW) */}
+      {menuOpen && (
+        <div
+          className="nav-overlay show"
+          onClick={() => setMenuOpen(false)}
+        ></div>
+      )}
 
       {/* ================= HERO ================= */}
       <section id="home" className={`hero ${pageLoaded ? "show" : ""}`}>
@@ -129,7 +117,9 @@ export default function App() {
 
           <div className="hero-buttons">
             <button className="cta" onClick={() => scrollTo("contact")}>Contact Me</button>
-            <a href="/resume/Sagar_Jha_Resume.pdf" className="cta resume-btn" target="_blank" rel="noreferrer">Resume</a>
+            <a href="/resume/Sagar_Jha_Resume.pdf" className="cta resume-btn" target="_blank" rel="noreferrer">
+              Resume
+            </a>
           </div>
 
           <div className="scroll" onClick={() => scrollTo("about")}>
@@ -146,16 +136,28 @@ export default function App() {
       </section>
 
       {/* ================= ABOUT ================= */}
-      <section id="about" className="section animate-section spaced">
+      <section id="about" className="section animate-section">
         <h2>About Me</h2>
         <p>
-          I enjoy learning new technologies and building real-world projects
-          with clean UI and good UX.
+           I am a passionate Computer Science student with a strong interest in
+    frontend development and the MERN stack. I enjoy turning ideas into
+    interactive, responsive, and user-friendly web experiences.
+    <br /><br />
+    I focus on writing clean code, learning modern technologies, and
+    continuously improving my problem-solving skills through real-world
+    projects.<br /><br />
         </p>
+        <div className="about-highlights">
+          <span>🚀 Building responsive web applications</span>
+          <span>🎯 Focused on clean UI & good UX</span>
+          <span>🧠 Constant learner of modern technologies</span>
+          <span>🛠 Hands-on project experience</span>
+    
+        </div>
       </section>
 
       {/* ================= SKILLS ================= */}
-      <section id="skills" className="section animate-section spaced">
+      <section id="skills" className="section animate-section">
         <h2>Skills</h2>
         <div className="skills">
           <span>C</span><span>C++</span><span>Java</span><span>Python</span>
@@ -164,7 +166,7 @@ export default function App() {
       </section>
 
       {/* ================= PROJECTS ================= */}
-      <section id="projects" className="section animate-section spaced">
+      <section id="projects" className="section animate-section">
         <h2>Projects</h2>
 
         <div className="projects-grid">
@@ -199,23 +201,20 @@ export default function App() {
       </section>
 
       {/* ================= CONTACT ================= */}
-      <section id="contact" className="section animate-section spaced">
+      <section id="contact" className="section animate-section">
         <h2 className="contact-title">Contact Me</h2>
 
         <form
-  className="contact-form centered"
-  action="https://formspree.io/f/mkonddar"
-  method="POST"
->
-  <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
-
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" placeholder="Your Message with Phone Number(if any).." rows="5" required />
-
-  <button type="submit">Send Message</button>
-</form>
-
+          className="contact-form centered"
+          action="https://formspree.io/f/mkonddar"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" rows="5" required />
+          <button type="submit">Send Message</button>
+        </form>
       </section>
     </>
   );

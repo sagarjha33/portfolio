@@ -390,3 +390,129 @@ body {
     height: 260px;
   }
 }
+/* ================= GLOBAL MOBILE CENTER FIX ================= */
+@media (max-width: 768px) {
+
+  /* HERO + ALL SECTIONS */
+  .hero,
+  .section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    margin: 0 auto;
+  }
+
+  /* TEXT CENTER (HOME / ABOUT / CONTACT) */
+  .hero-text,
+  #about p,
+  #contact {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  /* ================= ABOUT SECTION ================= */
+
+.about-text {
+  max-width: 720px;          /* desktop ke liye better width */
+  margin-top: 12px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* desktop layout */
+.about-highlights {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* desktop: 2 columns */
+  gap: 16px;
+}
+
+.about-highlights span {
+  background: #1a1a3a;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+/* subtle hover for desktop */
+.about-highlights span:hover {
+  transform: translateY(-4px);
+  background: #222255;
+}
+
+/* ================= MOBILE OPTIMIZATION ================= */
+@media (max-width: 768px) {
+  .about-text {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-highlights {
+    grid-template-columns: 1fr; /* mobile: single column */
+  }
+}
+
+
+  /* IMAGE CENTER */
+  .hero-img {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* SKILLS CENTER */
+  .skills {
+    justify-content: center;
+  }
+
+  /* PROJECTS CENTER (already discussed) */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .project-wrapper {
+    width: 100%;
+    align-items: center;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .project-desc {
+    text-align: center;
+    max-width: 360px;
+  }
+
+  /* CONTACT FORM CENTER */
+  .contact-form {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* ================= HOME EXTRA MOBILE CENTER FIX ================= */
+@media (max-width: 768px) {
+
+  /* Contact Me + Resume buttons center */
+  .hero-buttons {
+    justify-content: center;
+    gap: 18px;
+  }
+
+  /* Scroll Down center */
+  .scroll {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Scroll text alignment */
+  .scroll span,
+  .scroll {
+    text-align: center;
+  }
+}
