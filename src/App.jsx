@@ -203,22 +203,19 @@ export default function App() {
         <h2 className="contact-title">Contact Me</h2>
 
         <form
-          className="contact-form centered"
-          action="https://formspree.io/f/mkonddar"
-          method="POST"
-        >
-          {/* REQUIRED FOR EMAIL */}
-          <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
-          <input type="hidden" name="_replyto" value="email" />
-          <input type="hidden" name="_next" value="https://sagarjha.vercel.app/" />
+  className="contact-form centered"
+  action="https://formspree.io/f/mkonddar"
+  method="POST"
+>
+  <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
 
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <input type="tel" name="phone" placeholder="Phone Number" />
-          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message with Phone Number(if any).." rows="5" required />
 
-          <button type="submit">Send Message</button>
-        </form>
+  <button type="submit">Send Message</button>
+</form>
+
       </section>
     </>
   );
