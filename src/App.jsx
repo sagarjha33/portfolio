@@ -11,6 +11,7 @@ import profile from "./assets/profile.jpg";
 export default function App() {
   const [active, setActive] = useState("home");
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   /* ---------- Typing Animation ---------- */
   const roles = ["Frontend Developer", "MERN Learner"];
@@ -79,14 +80,23 @@ export default function App() {
 
   const scrollTo = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false); // mobile menu close
   };
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* ================= NAVBAR ================= */}
       <nav className={`navbar ${pageLoaded ? "show" : ""}`}>
         <h3 className="brand">Sagar Jha</h3>
-        <ul>
+
+        {/* Hamburger */}
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           {["home", "about", "skills", "projects", "contact"].map((i) => (
             <li
               key={i}
@@ -99,7 +109,7 @@ export default function App() {
         </ul>
       </nav>
 
-      {/* HERO */}
+      {/* ================= HERO ================= */}
       <section id="home" className={`hero ${pageLoaded ? "show" : ""}`}>
         <div className="left-social">
           <a href="https://www.linkedin.com/in/jhaasagar" target="_blank" rel="noreferrer"><FaLinkedin /></a>
@@ -135,7 +145,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* ================= ABOUT ================= */}
       <section id="about" className="section animate-section spaced">
         <h2>About Me</h2>
         <p>
@@ -144,7 +154,7 @@ export default function App() {
         </p>
       </section>
 
-      {/* SKILLS */}
+      {/* ================= SKILLS ================= */}
       <section id="skills" className="section animate-section spaced">
         <h2>Skills</h2>
         <div className="skills">
@@ -153,48 +163,42 @@ export default function App() {
         </div>
       </section>
 
-      {/* PROJECTS — OPTION A */}
+      {/* ================= PROJECTS ================= */}
       <section id="projects" className="section animate-section spaced">
         <h2>Projects</h2>
 
         <div className="projects-grid">
-          {/* Project 1 */}
           <div className="project-wrapper">
             <div className="project-card">
               <img src="/projects/travel.png" alt="Travel Website" />
-              <h3>Travel Website</h3>
             </div>
             <div className="project-desc">
-              <p>
-                A travel website where users can explore destinations and plan trips.
-              </p>
+              <h3>Travel Website</h3>
+              <p>Explore destinations and plan trips.</p>
               <div className="project-links">
-                <a href="#" target="_blank">Demo</a>
-                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank" rel="noreferrer">Demo</a>
+                <a href="#" target="_blank" rel="noreferrer">GitHub</a>
               </div>
             </div>
           </div>
 
-          {/* Project 2 */}
           <div className="project-wrapper">
             <div className="project-card">
               <img src="/projects/weather.jpg" alt="Weather App" />
-              <h3>Weather App</h3>
             </div>
             <div className="project-desc">
-              <p>
-                Real-time weather app using API and modern JavaScript.
-              </p>
+              <h3>Weather App</h3>
+              <p>Real-time weather using API.</p>
               <div className="project-links">
-                <a href="#" target="_blank">Demo</a>
-                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank" rel="noreferrer">Demo</a>
+                <a href="#" target="_blank" rel="noreferrer">GitHub</a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* ================= CONTACT ================= */}
       <section id="contact" className="section animate-section spaced">
         <h2 className="contact-title">Contact Me</h2>
 
@@ -203,7 +207,10 @@ export default function App() {
           action="https://formspree.io/f/mkonddar"
           method="POST"
         >
+          {/* REQUIRED FOR EMAIL */}
           <input type="hidden" name="_subject" value="New Portfolio Message 🚀" />
+          <input type="hidden" name="_replyto" value="email" />
+          <input type="hidden" name="_next" value="https://sagarjha.vercel.app/" />
 
           <input type="text" name="name" placeholder="Your Name" required />
           <input type="email" name="email" placeholder="Your Email" required />
