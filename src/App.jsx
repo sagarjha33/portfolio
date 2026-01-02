@@ -143,9 +143,9 @@ export default function App() {
     frontend development and the MERN stack. I enjoy turning ideas into
     interactive, responsive, and user-friendly web experiences.
     <br /><br />
-    I focus on writing clean code, learning modern technologies, and
+    {/* I focus on writing clean code, learning modern technologies, and
     continuously improving my problem-solving skills through real-world
-    projects.<br /><br />
+    projects.<br /><br /> */}
         </p>
         <div className="about-highlights">
           <span>🚀 Building responsive web applications</span>

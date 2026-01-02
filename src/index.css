@@ -372,10 +372,10 @@ body {
     text-align: center;
     padding: 40px 30px;
   }
-
+/* 
   .left-social {
     display: none;
-  }
+  } */
 
   .hero-img {
     margin-top: 40px;
@@ -514,5 +514,53 @@ body {
   .scroll span,
   .scroll {
     text-align: center;
+  }
+}
+/* ================= MOBILE: SOCIAL ICONS BETWEEN BUTTONS & SCROLL ===02/01/2026=========== */
+@media (max-width: 768px) {
+
+  /* Hero main container */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Hero text block */
+  .hero-text {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Buttons */
+  .hero-buttons {
+    order: 2;
+  }
+
+  /* Social icons JUST BELOW buttons */
+  .left-social {
+    order: 3;                 /* 👈 buttons ke baad */
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 18px;
+    font-size: 1.4rem;
+  }
+
+  /* Scroll Down always BELOW icons */
+  .scroll {
+    order: 4;
+    margin-top: 22px;
+    justify-content: center;
+  }
+
+  /* Profile image last */
+  .hero-img {
+    order: 5;
+    margin-top: 35px;
   }
 }
