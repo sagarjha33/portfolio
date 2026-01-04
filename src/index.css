@@ -418,21 +418,15 @@ body {
   opacity: 0.85;
 }
 
-/* desktop layout */
-.about-highlights {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* desktop: 2 columns */
-  gap: 16px;
-}
 
-.about-highlights span {
+
+/* .about-highlights span {
   background: #1a1a3a;
   padding: 14px 18px;
   border-radius: 10px;
   font-size: 0.95rem;
   transition: 0.3s ease;
-}
+} */
 
 /* subtle hover for desktop */
 .about-highlights span:hover {
@@ -563,4 +557,20 @@ body {
     order: 5;
     margin-top: 35px;
   }
+}
+/* ================= ABOUT: SAME LAYOUT FOR DESKTOP & MOBILE ================= */
+
+.about-highlights {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;   /* ✅ always vertical */
+  gap: 16px;
+  max-width: 720px;
+}
+
+.about-highlights span {
+  background: #1a1a3a;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem;
 }
