@@ -574,3 +574,39 @@ body {
   border-radius: 12px;
   font-size: 0.95rem;
 }
+/* ================= FOOTER ================= */
+.footer {
+  background: #0f172a;
+  color: #cbd5f5;
+  padding: 20px 20px 10px;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.footer-socials a {
+  font-size: 1.2rem;
+  color: #cbd5f5;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  color: #38bdf8;
+  transform: translateY(-3px);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}

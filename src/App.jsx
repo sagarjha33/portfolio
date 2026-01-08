@@ -216,6 +216,35 @@ export default function App() {
           <button type="submit">Send Message</button>
         </form>
       </section>
+            {/* ================= FOOTER ================= */}
+      <footer className="footer">
+        <div className="footer-container">
+          
+
+          <div className="footer-socials">
+            <a href="https://github.com/sagarjha33" target="_blank" rel="noreferrer">
+              <FaGithub />
+            </a>
+            <a href="https://www.linkedin.com/in/jhaasagar" target="_blank" rel="noreferrer">
+              <FaLinkedin />
+            </a>
+            <a href="mailto:jhaasagar33@gmail.com">
+              <FaEnvelope />
+            </a>
+            <a href="https://wa.me/917278527233" target="_blank" rel="noreferrer">
+              <FaWhatsapp />
+            </a>
+            <a href="https://t.me/sagarjha33" target="_blank" rel="noreferrer">
+              <FaTelegramPlane />
+            </a>
+          </div>
+
+          <p className="footer-copy">
+            © {new Date().getFullYear()} Sagar Jha. All rights reserved.
+          </p>
+        </div>
+      </footer>
+
     </>
   );
 }
